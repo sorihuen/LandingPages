@@ -9,7 +9,7 @@ const backgroundUrl = imgfondomenu
 const CABO_COLOR = ref('#FFD700');
 
 // URL que se codificará en el QR
-const qrValue = ref('https://taquerianortena.com/');
+const qrValue = ref('https://landingpages-eto.pages.dev/landing/qrcode');
 </script>
 
 <template>
