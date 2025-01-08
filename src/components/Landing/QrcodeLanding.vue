@@ -3,8 +3,9 @@ import { ref } from 'vue';
 import QRCodeVue3 from 'qrcode-vue3';
 import HeaderLanding from '@/shared/HeaderLandig.vue';
 import AppFooter from '@/components/Landing/AppFooter.vue';
+import { imgfondomenu } from '@/components/general/Imagen';
 
-const backgroundUrl = '/src/assets/img/fondoSabores.jpg';
+const backgroundUrl = imgfondomenu
 const CABO_COLOR = ref('#FFD700');
 
 // URL que se codificará en el QR
