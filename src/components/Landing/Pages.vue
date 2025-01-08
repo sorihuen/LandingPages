@@ -2,14 +2,12 @@
 import { ref, onMounted } from 'vue';
 import AppFooter from '@/components/Landing/AppFooter.vue';
 import HeaderLanding from '@/shared/HeaderLandig.vue';
-import imgfondo from '@/assets/img/fondoSabores.jpg';
-import imgsashimi from '@/assets/img/sashimi.jpg';
-import imguramaki from '@/assets/img/uramaki.jpg';
-import imgonigiri from '@/assets/img/onigiri.jpg';
-import combo from '@/assets/img/combosushi.jpg';
-
-
+import { imgfondo, imgsashimi, imguramaki, imgonigiri, imgcombo, images } from '@/components/general/Imagen';
 import { useHead } from '@vueuse/head';
+
+
+
+
 
 // Configuración del head de la página
 useHead({
@@ -26,8 +24,6 @@ useHead({
 // Variables reactivas
 const CABO_COLOR = ref('#FFD700');
 
-const CABO_WEBSITE_URL = ref('https://www.restaurantlogin.com/ordering/restaurant/menu?company_uid=0e22a513-3abe-48f5-8221-1730d771289d&restaurant_uid=08885f86-0430-4a70-a0f7-ddf674c95e69&facebook=true');
-
 // Función para generar una URL de imagen de placeholder
 const getPlaceholderImage = (width, height, text) =>
     `https://via.placeholder.com/${width}x${height}.png?text=${encodeURIComponent(text)}`;
@@ -43,17 +39,9 @@ const dishes = ref([
 const promotionalDish = ref({
     name: 'Friend Combo',
     price: '$27.75',
-    image: combo,
+    image: imgcombo,
     url: 'https://order.online/business/taqueria-milear-75598'
 });
-
-// Datos de las imágenes para el carrusel
-const images = ref([
-    '/assets/img/sushi.jpg',
-    '/assets/img/japan.jpg',
-    '/assets/img/food.jpg',
-    '/assets/img/salmon.jpg',
-]);
 
 const currentIndex = ref(0);
 
