@@ -22,7 +22,6 @@ const sauces = ref({
     soya: false,
     wasabi: false,
     sriracha: false,
-    // Aquí puedes agregar más opciones de salsas
 })
 
 const incrementQuantity = () => {
@@ -43,17 +42,15 @@ const formatPrice = (price) => {
 }
 
 const totalPrice = computed(() => {
-    // Verifica si 'dish' tiene un precio válido
     if (!props.dish || !props.dish.price) return formatPrice(0);
-
     return formatPrice(props.dish.price * quantity.value);
 });
 
 const addToOrder = () => {
     emit('add-to-order', {
         quantity: quantity.value,
-        sauces: sauces.value, // Cambiado a 'sauces'
-        dish: props.dish // Agregar datos completos del plato
+        sauces: sauces.value,
+        dish: props.dish
     })
     closeModal()
 }
@@ -65,33 +62,33 @@ const closeModal = () => {
 
 <template>
     <div v-if="isOpen" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50">
-        <div class="bg-white rounded-lg max-w-3xl w-full max-h-[90vh] overflow-y-auto flex relative">
+        <div
+            class="bg-white rounded-lg w-full max-w-3xl max-h-[90vh] overflow-y-auto flex flex-col md:flex-row relative">
             <!-- Imagen del plato -->
-            <div class="w-1/2">
-                <img :src="props.dish.image" :alt="props.dish.name" class="w-full h-full object-cover rounded-l-lg" />
+            <div class="w-full md:w-1/2">
+                <img :src="props.dish.image" :alt="props.dish.name"
+                    class="w-full h-48 md:h-full object-cover rounded-t-lg md:rounded-l-lg" />
             </div>
 
             <!-- Contenido del modal -->
-            <div class="w-1/2 p-6">
-                <!-- Close Button -->
+            <div class="w-full md:w-1/2 p-6 flex flex-col">
+                <!-- Botón Cerrar -->
                 <button @click="closeModal" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
                     <XIcon class="h-6 w-6" />
                 </button>
 
-                <!-- Modal Header -->
-                <h2 class="text-2xl font-bold">{{ props.dish.name }}</h2>
-                <p class="text-gray-600 mt-2">{{ props.dish.description }}</p>
+                <!-- Cabecera del modal -->
+                <h2 class="text-xl md:text-2xl font-bold">{{ props.dish.name }}</h2>
+                <p class="text-sm md:text-base text-gray-600 mt-2">{{ props.dish.description }}</p>
 
-                <!-- Modal Body -->
+                <!-- Selección de salsas -->
                 <div class="mb-6 mt-4">
-                    <h3 class="text-lg font-semibold mb-3 flex items-center">
-                        Add sauce to your order
-                        <span class="ml-2 text-xs bg-black text-white px-2 py-1 rounded">
-                            Optional</span>
+                    <h3 class="text-base md:text-lg font-semibold mb-3 flex items-center">
+                        Agregar salsas
+                        <span class="ml-2 text-xs bg-black text-white px-2 py-1 rounded">Opcional</span>
                     </h3>
-                    <p class="text-sm text-gray-600 mb-4">Select:</p>
-
-                    <div class="space-y-3">
+                    <p class="text-sm text-gray-600 mb-4">Seleccione:</p>
+                    <div class="space-y-2">
                         <label class="flex items-center">
                             <input type="checkbox" class="form-checkbox rounded border-gray-300"
                                 v-model="sauces.teriyaki">
@@ -104,36 +101,31 @@ const closeModal = () => {
                         </label>
                         <label class="flex items-center">
                             <input type="checkbox" class="form-checkbox rounded border-gray-300" v-model="sauces.soya">
-                            <span class="ml-2">Soy Sauce</span>
+                            <span class="ml-2">Salsa de soya</span>
                         </label>
                         <label class="flex items-center">
                             <input type="checkbox" class="form-checkbox rounded border-gray-300"
                                 v-model="sauces.wasabi">
-                            <span class="ml-2">Wasabi - Ginger</span>
+                            <span class="ml-2">Wasabi - Jengibre</span>
                         </label>
                         <label class="flex items-center">
                             <input type="checkbox" class="form-checkbox rounded border-gray-300"
                                 v-model="sauces.sriracha">
                             <span class="ml-2">Sriracha</span>
                         </label>
-                        <!-- Agregar más opciones de salsas aquí -->
                     </div>
                 </div>
 
-                <!-- Quantity and Add Button -->
+                <!-- Cantidad y botón agregar -->
                 <div class="flex items-center justify-between mt-6">
                     <div class="flex items-center border rounded-lg">
                         <button @click="decrementQuantity" class="px-4 py-2 text-gray-600 hover:bg-gray-100"
-                            :disabled="quantity <= 1">
-                            −
-                        </button>
+                            :disabled="quantity <= 1">−</button>
                         <span class="px-4 py-2 border-x">{{ quantity }}</span>
-                        <button @click="incrementQuantity" class="px-4 py-2 text-gray-600 hover:bg-gray-100">
-                            +
-                        </button>
+                        <button @click="incrementQuantity" class="px-4 py-2 text-gray-600 hover:bg-gray-100">+</button>
                     </div>
                     <button @click="addToOrder"
-                        class="bg-red-500 text-white px-6 py-2 rounded-lg hover:bg-red-600 transition duration-300">
+                        class="bg-red-500 text-white px-4 md:px-6 py-2 rounded-lg hover:bg-red-600 transition duration-300">
                         Agregar {{ totalPrice }}
                     </button>
                 </div>
