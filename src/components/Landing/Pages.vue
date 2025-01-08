@@ -47,13 +47,12 @@ const promotionalDish = ref({
     url: 'https://order.online/business/taqueria-milear-75598'
 });
 
-// Variables para el carrusel de imágenes
 // Datos de las imágenes para el carrusel
 const images = ref([
-    '/src/assets/img/sushi.jpg',
-    '/src/assets/img/japan.jpg',
-    '/src/assets/img/food.jpg',
-    '/src/assets/img/salmon.jpg',
+    '/assets/img/sushi.jpg',
+    '/assets/img/japan.jpg',
+    '/assets/img/food.jpg',
+    '/assets/img/salmon.jpg',
 ]);
 
 const currentIndex = ref(0);
