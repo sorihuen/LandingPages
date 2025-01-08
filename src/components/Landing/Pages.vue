@@ -5,10 +5,6 @@ import HeaderLanding from '@/shared/HeaderLandig.vue';
 import { imgfondo, imgsashimi, imguramaki, imgonigiri, imgcombo, images } from '@/components/general/Imagen';
 import { useHead } from '@vueuse/head';
 
-
-
-
-
 // Configuración del head de la página
 useHead({
     title: 'Taqueria Milear - Comida Mexicana Auténtica',
@@ -45,16 +41,14 @@ const promotionalDish = ref({
 
 const currentIndex = ref(0);
 
-// Métodos para el carrusel de imágenes
 const nextImage = () => {
-    currentIndex.value = (currentIndex.value + 1) % images.value.length;
+    currentIndex.value = (currentIndex.value + 1) % images.length;
 };
 
 const prevImage = () => {
-    currentIndex.value = (currentIndex.value - 1 + images.value.length) % images.value.length;
+    currentIndex.value = (currentIndex.value - 1 + images.length) % images.length;
 };
 
-// Avanzar automáticamente las imágenes
 onMounted(() => {
     setInterval(nextImage, 3000);
 });
@@ -77,6 +71,7 @@ onMounted(() => {
         </h1>
         <section class="flow-root -mt-2">
             <div class="px-2 max-w-[3000px] mx-auto mb-10">
+                {{ image }}
                 <div class="flex justify-center gap-1 mb-4 w-full">
                     <!-- Imagen 1 -->
                     <img :src="images[currentIndex]" class="w-[45%] h-auto object-contain select-none" draggable="false"

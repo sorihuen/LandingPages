@@ -10,6 +10,7 @@ import imgmakis from '@/assets/img/Makis.jpg';
 import uramaki from '@/assets/img/uramaki.jpg';
 import gunkan from '@/assets/img/gunkan.jpg';
 import onigiri from '@/assets/img/onigiri.jpg';
+import { imgfondomenu } from '@/components/general/Imagen';
 
 const CABO_COLOR = ref('#FFD700')
 
@@ -85,7 +86,7 @@ const handleAddToOrder = (orderData) => {
 <template>
     <HeaderLanding />
     <div class="bg-amber-50 min-h-screen py-12 px-4 sm:px-6 lg:px-8 bg-cover bg-center"
-        style="background-image: url('/src/assets/img/fondoSabores.jpg');">
+        :style="{ backgroundImage: `url(${imgfondomenu})` }">
         <div class="max-w-7xl mx-auto">
             <h1 class="w-full mx-auto px-4 mt-6 mb-8 text-center text-5xl sm:text-4xl font-bold"
                 :style="`color: ${CABO_COLOR};`">
