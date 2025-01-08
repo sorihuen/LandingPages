@@ -3,12 +3,13 @@ import { ref, watch } from 'vue'
 import ReviewStart from '@/components/Landing/ReviewStart.vue';
 import AppFooter from '@/components/Landing/AppFooter.vue';
 import HeaderLanding from '@/shared/HeaderLandig.vue';
+import { imgfondomenu } from '@/components/general/Imagen';
 
 const email = ref('')
 const emailError = ref('')
 const viewReview = ref(false)
 const showFeedback = ref(false)
-const backgroundUrl = '/src/assets/img/fondoSabores.jpg'
+const backgroundUrl = imgfondomenu
 const reviewBackgroundUrl = '/src/assets/img/opinion-bg.jpg'
 
 const validateEmail = (value) => {
